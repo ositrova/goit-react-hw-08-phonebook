@@ -1,26 +1,20 @@
+import { useSelector } from 'react-redux';
 
-import {List, Item, Text, Btn } from './PhoneList.style';
-
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'redux/operations';
-import { selectVisibleContacts } from '../../redux/selectors';
-
-
+import { PhoneItem } from 'components/PhoneItem/PhoneItem';
+import { selectFilteredContacts } from 'redux/filter/selectors';
 
 export const PhoneList = () => {
-  const contacts = useSelector(selectVisibleContacts);
-  const dispatch = useDispatch();
+  const filteredContacts = useSelector(selectFilteredContacts);
 
-
-  const handleDelete = id => dispatch(deleteContact(id));
-
-    const elements = contacts.map(contact=>(
-        <Item key={contact.id}>
-            <Text>{contact.name}</Text>
-                <Text>{contact.number}</Text>
-                <Btn type='button' onClick={() => handleDelete(contact.id)}>Delete</Btn>
-            </Item>
-      ));
-      return <List>{elements}</List>;
-    };
-        
+  return (
+    <>
+      <ul>
+        {filteredContacts.map(({ id, name, number }) => (
+          <li key={id}>
+            <PhoneItem id={id} name={name} number={number} />
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+};

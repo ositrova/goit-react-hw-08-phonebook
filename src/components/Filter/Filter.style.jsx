@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
-export const Contanier = styled.div`
-display: flex;
-flex-direction: column;
-gap: 10px;
+export const Label = styled.label`
+  margin-left: 30px;
+  font-size: 18px;
 `;
 
 export const Input = styled.input`
-border: 1px solid black;
-border-radius: 7px;
-padding: 4px;
-margin-bottom: 30px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  width: 300px;
+  height: 40px;
+  padding: 10px 10px;
+  border-radius: 4px;
 `;

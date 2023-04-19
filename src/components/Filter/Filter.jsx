@@ -1,29 +1,27 @@
-import { Contanier, Input } from './Filter.style';
-
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFilter } from 'redux/selectors';
-import { filterContacts } from 'redux/filterSlice';
+
+import { selectFilter } from 'redux/filter/selectors';
+import { filterContacts } from 'redux/filter/slice';
+
+import { Input, Label } from './Filter.style';
 
 export const Filter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
 
-  const handleChange = e => {
-    dispatch(filterContacts(e.target.value));
-  };
   return (
-    <Contanier>
-      <label htmlFor="">Find contacts by name</label>
-      <Input
-        name="filter"
-        onChange={handleChange}
-        value={filter}
-        type="text"
-        placeholder="Сontact search ..."
-      />
-    </Contanier>
+    <div>
+
+      <Label>
+        Find contacts by name
+        <Input
+          type="text"
+          value={filter}
+          name="nameToFind"
+          onChange={e => dispatch(filterContacts(e.target.value))}
+          autoComplete="off"
+        />
+      </Label>
+    </div>
   );
 };
-
-
-
