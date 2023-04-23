@@ -38,12 +38,25 @@ export const PhoneForm = () => {
       return toast.error(`${values.name} is already in contacts.`);
     }
 
-    dispatch(addContact(values));
-    actions.resetForm();
-
-    toast.success(
-      `Contact ${values.name} was successfully added to you phonebook`
-    );
+    // dispatch(addContact(values))
+    // actions.resetForm()
+    // toast.success(
+    //   `Contact ${values.name} was successfully added to you phonebook`
+    // );
+    dispatch(addContact(values))
+    .unwrap()
+    .then((success) => {
+   toast.success(
+        `Contact ${values.name} was successfully added to you phonebook`
+      )
+   })
+    .catch((error) => {
+      toast.error(
+        `Contact ${values.name} was't added to you phonebook`
+      );
+      
+    })
+    actions.resetForm()
   };
 
   return (

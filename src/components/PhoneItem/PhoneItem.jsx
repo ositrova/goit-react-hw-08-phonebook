@@ -15,10 +15,21 @@ export const PhoneItem = ({ id, name, number }) => {
   const btn = useRef();
 
   const handleDelete = () => {
-    dispatch(deleteContact(id));
-    btn.current.disabled = true;
+    // dispatch(deleteContact(id));
+    // btn.current.disabled = true;
 
-    toast.info(`Сontact ${name} has been deleted`);
+    // toast.info(`Сontact ${name} has been deleted`);
+
+
+    dispatch(deleteContact(id))
+    .unwrap()
+    .then((success) => {
+      toast.info(`Сontact ${name} has been deleted`)
+    })
+    .catch((error) => {
+      toast.error(`Сontact ${name} not deleted`);
+    })
+
   };
 
   const openModal = () => {
